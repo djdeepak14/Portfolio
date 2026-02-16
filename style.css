@@ -594,3 +594,7 @@ h2 {
     cursor: pointer !important;
     z-index: 10 !important;
 }
+    @media (max-width: 1023px) {
+    #cursor-container { display: none; }
+    body { cursor: default !important; }
+}
