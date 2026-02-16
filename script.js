@@ -82,15 +82,19 @@ document.getElementById("contact-form")?.addEventListener("submit", e => {
     }
 });
 
-// Snake Trail Cursor – lighter (14 segments)
+// ────────────────────────────────────────────────
+// Snake Trail Cursor – now works on desktop (mouse) + mobile (touch)
+// ────────────────────────────────────────────────
+
 const cursorContainer = document.getElementById("cursor-container");
 if (cursorContainer) {
-    const trailLength = 14;  // reduced from 22
+    const trailLength = 14;  // light and smooth
     const segments = [];
     const easing = 0.28;
-    let mouseX = 0;
-    let mouseY = 0;
+    let posX = window.innerWidth / 2;   // initial position center
+    let posY = window.innerHeight / 2;
 
+    // Create trail segments
     for (let i = 0; i < trailLength; i++) {
         const seg = document.createElement("div");
         seg.className = "cursor-segment";
@@ -101,33 +105,46 @@ if (cursorContainer) {
         segments.push(seg);
     }
 
+    // Desktop: mouse movement
     window.addEventListener("mousemove", e => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
+        posX = e.clientX;
+        posY = e.clientY;
     });
 
-    function updateSnake() {
-        segments[0].style.left = mouseX + "px";
-        segments[0].style.top  = mouseY + "px";
+    // Mobile: touch movement – trail follows finger
+    window.addEventListener("touchmove", e => {
+        if (e.touches && e.touches.length > 0) {
+            posX = e.touches[0].clientX;
+            posY = e.touches[0].clientY;
+            // e.preventDefault();  // Uncomment if you want to block scrolling while dragging
+        }
+    }, { passive: true });  // passive: true = allows normal scrolling
 
+    // Update trail (same logic for mouse & touch)
+    function updateTrail() {
+        // Head follows current position
+        segments[0].style.left = posX + "px";
+        segments[0].style.top  = posY + "px";
+
+        // Each segment follows the one before it
         for (let i = 1; i < trailLength; i++) {
             const prev = segments[i - 1];
             const curr = segments[i];
 
-            const px = parseFloat(prev.style.left) || mouseX;
-            const py = parseFloat(prev.style.top)  || mouseY;
+            const prevX = parseFloat(prev.style.left) || posX;
+            const prevY = parseFloat(prev.style.top)  || posY;
 
-            const cx = parseFloat(curr.style.left) || px;
-            const cy = parseFloat(curr.style.top)  || py;
+            const currX = parseFloat(curr.style.left) || prevX;
+            const currY = parseFloat(curr.style.top)  || prevY;
 
-            curr.style.left = (cx + (px - cx) * easing) + "px";
-            curr.style.top  = (cy + (py - cy) * easing) + "px";
+            curr.style.left = (currX + (prevX - currX) * easing) + "px";
+            curr.style.top  = (currY + (prevY - currY) * easing) + "px";
         }
 
-        requestAnimationFrame(updateSnake);
+        requestAnimationFrame(updateTrail);
     }
 
-    updateSnake();
+    updateTrail();
 }
 
 // Dynamic education reveal – unchanged
