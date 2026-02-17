@@ -14,13 +14,6 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
 
     <link rel="stylesheet" href="style.css">
-    <style>
-        @media (max-width: 1023px) {
-            #cursor-container {
-                display: block !important;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -150,7 +143,6 @@
             </div>
         </div>
     </section>
-
 
     <section id="projects" class="section projects">
         <h2>Selected Projects</h2>
@@ -284,39 +276,51 @@
         <p>LinkedIn: <a href="https://www.linkedin.com/in/deepak-khanal-419266252/"
                 target="_blank">linkedin.com/in/deepak-khanal-419266252</a></p>
 
-        <form id="contact-form">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Message" required rows="5"></textarea>
-            <button type="submit" class="cta-btn">Send Message</button>
+        <form action="https://formsubmit.co/djdeepakdj14@gmail.com" method="POST" class="contact-form">
+
+            <input type="text" name="name" placeholder="Your Name" required>
+
+            <input type="email" name="email" placeholder="Your Email" required>
+
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+
+            <!-- Disable captcha -->
+            <input type="hidden" name="_captcha" value="false">
+
+            <!-- After submit, stay on same page -->
+            <input type="hidden" name="_next" value="https://portfolio-44vtv7l9w-djdeepak14s-projects.vercel.app/">
+
+            <button type="submit" class="send-btn">
+                Send Message
+            </button>
+
         </form>
-    </section>
 
-    <!-- Cover Letter Modal -->
-    <div id="cover-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">×</span>
-            <h2>Cover Letter</h2>
-            <p>Dear Hiring Manager,</p>
-            <p>As a recent Automation Engineering graduate with practical experience in PLC programming, robotics, IoT
-                systems, full-stack development, and computer vision, I am excited to bring technical skill, dedication,
-                and a strong work ethic to your team.</p>
-            <p>My projects include real-time YOLO-based traffic monitoring, ABB robot programming with state machines,
-                IoT sensor dashboards, and React-based booking systems. I am comfortable with TwinCAT, TIA Portal,
-                Python/OpenCV, Node.js/React, and GSAP animations.</p>
-            <p>Years of working in fast-paced environments in logistics and hospitality have strengthened my ability to
-                collaborate, adapt quickly, communicate effectively, and perform reliably under pressure.</p>
-            <p>I would welcome the opportunity to contribute to innovative automation and technology projects while
-                continuing to grow professionally.</p>
-            <p>Thank you for your time and consideration.</p>
-            <p>Sincerely,<br>Deepak Khanal</p>
+        <!-- Cover Letter Modal -->
+        <div id="cover-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">×</span>
+                <h2>Cover Letter</h2>
+                <p>Dear Hiring Manager,</p>
+                <p>As a recent Automation Engineering graduate with practical experience in PLC programming, robotics,
+                    IoT systems, full-stack development, and computer vision, I am excited to bring technical skill,
+                    dedication, and a strong work ethic to your team.</p>
+                <p>My projects include real-time YOLO-based traffic monitoring, ABB robot programming with state
+                    machines, IoT sensor dashboards, and React-based booking systems. I am comfortable with TwinCAT, TIA
+                    Portal, Python/OpenCV, Node.js/React, and GSAP animations.</p>
+                <p>Years of working in fast-paced environments in logistics and hospitality have strengthened my ability
+                    to collaborate, adapt quickly, communicate effectively, and perform reliably under pressure.</p>
+                <p>I would welcome the opportunity to contribute to innovative automation and technology projects while
+                    continuing to grow professionally.</p>
+                <p>Thank you for your time and consideration.</p>
+                <p>Sincerely,<br>Deepak Khanal</p>
+            </div>
         </div>
-    </div>
 
-    <!-- Snake trail cursor container -->
-    <div id="cursor-container"></div>
+        <!-- Snake trail cursor container -->
+        <div id="cursor-container"></div>
 
-    <script src="script.js" defer></script>
+        <script src="script.js" defer></script>
 </body>
 
 </html>
