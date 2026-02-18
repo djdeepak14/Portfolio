@@ -1,4 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Mobile hamburger toggle
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+
+    if (hamburger && navLinks) {
+        hamburger.addEventListener("click", () => {
+            navLinks.classList.toggle("active");  // slide menu
+            hamburger.classList.toggle("open");   // animate X
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("active");
+                hamburger.classList.remove("open");
+            });
+        });
+    }
+
     // ───────────────────────────────────────────────
     // Modal Open / Close with Book-Opening Animation
     // ───────────────────────────────────────────────
@@ -17,16 +36,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Book opens: starts closed (scaled + rotated), unfolds like pages
         gsap.fromTo(content,
-            { 
-                scale: 0.4, 
-                opacity: 0.4, 
+            {
+                scale: 0.4,
+                opacity: 0.4,
                 rotationY: -80,              // closed book perspective
                 transformOrigin: "left center",
                 skewX: -12
             },
-            { 
-                scale: 1, 
-                opacity: 1, 
+            {
+                scale: 1,
+                opacity: 1,
                 rotationY: 0,
                 skewX: 0,
                 duration: 1.0,
@@ -111,14 +130,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 1. GSAP Hero Entrance + glitch
     if (typeof gsap !== "undefined") {
-        gsap.from(".hero-name",   { duration: 1.4, y: 90, opacity: 0, ease: "power4.out" });
-        gsap.from(".subtitle",    { duration: 1.2, y: 60, opacity: 0, ease: "power4.out", delay: 0.35 });
-        gsap.from(".cta-btn",     { duration: 1.0, scale: 0.8, opacity: 0, ease: "back.out(1.7)", delay: 0.9 });
+        gsap.from(".hero-name", { duration: 1.4, y: 90, opacity: 0, ease: "power4.out" });
+        gsap.from(".subtitle", { duration: 1.2, y: 60, opacity: 0, ease: "power4.out", delay: 0.35 });
+        gsap.from(".cta-btn", { duration: 1.0, scale: 0.8, opacity: 0, ease: "back.out(1.7)", delay: 0.9 });
 
         gsap.timeline({ delay: 2.2 })
             .to(".hero-name", { x: -6, skewX: 10, duration: 0.08 })
-            .to(".hero-name", { x: 6,  skewX: -10, duration: 0.08 })
-            .to(".hero-name", { x: 0,  skewX: 0,  duration: 0.14 });
+            .to(".hero-name", { x: 6, skewX: -10, duration: 0.08 })
+            .to(".hero-name", { x: 0, skewX: 0, duration: 0.14 });
     }
 
     // 2. Hero particles
@@ -130,8 +149,8 @@ document.addEventListener("DOMContentLoaded", () => {
             p.style.width = `${1.2 + Math.random() * 4}px`;
             p.style.height = p.style.width;
             p.style.left = `${Math.random() * 100}%`;
-            p.style.top  = `${Math.random() * 100}%`;
-            p.style.animationDelay    = `${Math.random() * 12}s`;
+            p.style.top = `${Math.random() * 100}%`;
+            p.style.animationDelay = `${Math.random() * 12}s`;
             p.style.animationDuration = `${16 + Math.random() * 24}s`;
             heroParticles.appendChild(p);
         }
@@ -217,18 +236,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function updateTrail() {
             segments[0].style.left = mouseX + "px";
-            segments[0].style.top  = mouseY + "px";
+            segments[0].style.top = mouseY + "px";
 
             for (let i = 1; i < trailLength; i++) {
                 const prev = segments[i - 1];
                 const curr = segments[i];
                 const px = parseFloat(prev.style.left) || mouseX;
-                const py = parseFloat(prev.style.top)  || mouseY;
+                const py = parseFloat(prev.style.top) || mouseY;
                 const cx = parseFloat(curr.style.left) || px;
-                const cy = parseFloat(curr.style.top)  || py;
+                const cy = parseFloat(curr.style.top) || py;
 
                 curr.style.left = (cx + (px - cx) * easing) + "px";
-                curr.style.top  = (cy + (py - cy) * easing) + "px";
+                curr.style.top = (cy + (py - cy) * easing) + "px";
             }
 
             requestAnimationFrame(updateTrail);
@@ -279,7 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ctx.rotate(this.rot);
                 ctx.globalAlpha = this.alpha + Math.sin(this.pulse) * 0.05;
                 ctx.fillStyle = `hsla(${this.hue}, 85%, 62%, 0.28)`;
-                ctx.fillRect(-this.size/2, -this.size/1.8, this.size, this.size * 1.4);
+                ctx.fillRect(-this.size / 2, -this.size / 1.8, this.size, this.size * 1.4);
                 ctx.restore();
             }
         }
@@ -288,7 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function loop() {
             ctx.fillStyle = 'rgba(5,7,10,0.08)';
-            ctx.fillRect(0,0,w,h);
+            ctx.fillRect(0, 0, w, h);
             bots.forEach(b => { b.update(); b.draw(); });
             requestAnimationFrame(loop);
         }
@@ -304,4 +323,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { threshold: 0.2 });
 
     document.querySelectorAll('.edu-item').forEach(item => eduObserver.observe(item));
+});
+// Hero name holographic particles + staggered text entrance
+document.addEventListener("DOMContentLoaded", () => {
+    const heroName = document.querySelector(".hero-name");
+    const holoContainer = document.querySelector(".holo-particles");
+
+    if (holoContainer && heroName) {
+        // Create 20 floating particles around name
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement("div");
+            particle.className = "holo-particle";
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 8}s`;
+            holoContainer.appendChild(particle);
+        }
+    }
+
+    // Staggered entrance for text elements
+    gsap.from(".subtitle", { y: 40, opacity: 0, duration: 1.2, delay: 0.8, ease: "power3.out" });
+    gsap.from(".location-gloomy", { y: 40, opacity: 0, duration: 1.2, delay: 1.1, ease: "power3.out" });
+    gsap.from(".tagline-gloomy", { y: 40, opacity: 0, duration: 1.2, delay: 1.4, ease: "power3.out" });
+    gsap.from(".cta-btn", { scale: 0.8, opacity: 0, duration: 1, delay: 1.8, ease: "back.out(1.7)" });
 });
