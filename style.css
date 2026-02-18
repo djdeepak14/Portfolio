@@ -598,3 +598,92 @@ h2 {
     .edu-item { padding-left: 3.5rem; }
     .edu-dot { left: -4px; }
 }
+/* ================= MOBILE OPTIMIZATION ================= */
+@media (max-width: 768px) {
+
+    /* Disable heavy animated background for performance */
+    body {
+        animation: none !important;
+        background: #05070a !important;
+        cursor: default !important;
+    }
+
+    /* Fix viewport height issue on mobile */
+    .hero {
+        min-height: 100dvh !important;
+        padding: 0 6% !important;
+    }
+
+    /* Disable custom cursor */
+    #cursor-container {
+        display: none !important;
+    }
+
+    /* Navbar mobile layout */
+    .navbar {
+        flex-direction: column !important;
+        gap: 1rem !important;
+        padding: 1rem 5% !important;
+    }
+
+    .nav-links {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 1rem !important;
+    }
+
+    /* Sections spacing */
+    .section {
+        padding: 5rem 6% !important;
+    }
+
+    h2 {
+        font-size: 2.2rem !important;
+        margin-bottom: 2rem !important;
+    }
+
+    /* Modal mobile fix */
+    .modal-content {
+        width: 96% !important;
+        max-height: 92dvh !important;
+        padding: 2rem 1.5rem !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .close-modal {
+        font-size: 2.2rem !important;
+        right: 1rem !important;
+    }
+
+    /* Grid adjustments */
+    .skills-grid,
+    .project-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    /* Education timeline adjustment */
+    .education-timeline::before {
+        left: 14px !important;
+    }
+
+    .edu-item {
+        padding-left: 3rem !important;
+    }
+
+    .edu-dot {
+        left: -4px !important;
+    }
+
+    /* Contact form */
+    .contact-form {
+        gap: 1rem !important;
+    }
+
+    /* Improve tap targets */
+    button,
+    a {
+        min-height: 44px;
+    }
+}
