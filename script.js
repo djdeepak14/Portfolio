@@ -1,12 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // 🔊 Modal Sound Setup
+    // ───────────────────────────────────────────────
+    // Modal Sound Setup
+    // ───────────────────────────────────────────────
     const modalSound = new Howl({
         src: ['sound.mp3'], // change path if needed
         volume: 0.6
     });
 
+    // ───────────────────────────────────────────────
     // Mobile hamburger toggle
+    // ───────────────────────────────────────────────
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector(".nav-links");
 
@@ -27,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // ───────────────────────────────────────────────
     // Modal Open / Close with Sound
     // ───────────────────────────────────────────────
-
     function openModal(modalId) {
         const modal = document.getElementById(modalId);
         if (!modal) {
@@ -35,14 +38,15 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        modal.classList.add("active"); // ✅ added
+        modal.classList.add("active");
         modal.style.display = "flex";
         document.body.classList.add("no-scroll");
 
-        modalSound.play(); // 🔊 SOUND ON OPEN
+        modalSound.play();
 
         const content = modal.querySelector(".modal-content");
         if (!content) return;
+
         gsap.set(content, { transformPerspective: 1200 });
         gsap.fromTo(content,
             {
@@ -74,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const content = modal.querySelector(".modal-content");
         if (!content) return;
 
-        modalSound.play(); // 🔊 SOUND ON CLOSE
+        modalSound.play();
 
         gsap.to(content, {
             scale: 0.4,
@@ -84,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
             duration: 0.8,
             ease: "power3.in",
             onComplete: () => {
-                modal.classList.remove("active"); // ✅ added
+                modal.classList.remove("active");
                 modal.style.display = "none";
                 document.body.classList.remove("no-scroll");
             }
@@ -97,7 +101,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Attach modal triggers
+    // ───────────────────────────────────────────────
+    // Modal event listeners
+    // ───────────────────────────────────────────────
     document.querySelectorAll("[data-modal]").forEach(link => {
         link.addEventListener("click", e => {
             e.preventDefault();
@@ -131,20 +137,29 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-
-    // 1. GSAP Hero Entrance + glitch
+    // ───────────────────────────────────────────────
+    // Hero Animations (merged duplicated entrances)
+    // ───────────────────────────────────────────────
     if (typeof gsap !== "undefined") {
         gsap.from(".hero-name", { duration: 1.4, y: 90, opacity: 0, ease: "power4.out" });
         gsap.from(".subtitle", { duration: 1.2, y: 60, opacity: 0, ease: "power4.out", delay: 0.35 });
         gsap.from(".cta-btn", { duration: 1.0, scale: 0.8, opacity: 0, ease: "back.out(1.7)", delay: 0.9 });
 
+        // Glitch effect on hero name
         gsap.timeline({ delay: 2.2 })
             .to(".hero-name", { x: -6, skewX: 10, duration: 0.08 })
             .to(".hero-name", { x: 6, skewX: -10, duration: 0.08 })
             .to(".hero-name", { x: 0, skewX: 0, duration: 0.14 });
+
+        // Staggered entrance for lower hero texts (previously duplicated)
+        gsap.from(".subtitle",       { y: 40, opacity: 0, duration: 1.2, delay: 0.8,  ease: "power3.out" });
+        gsap.from(".location-gloomy",{ y: 40, opacity: 0, duration: 1.2, delay: 1.1,  ease: "power3.out" });
+        gsap.from(".tagline-gloomy", { y: 40, opacity: 0, duration: 1.2, delay: 1.4,  ease: "power3.out" });
     }
 
-    // 2. Hero particles
+    // ───────────────────────────────────────────────
+    // Hero particles
+    // ───────────────────────────────────────────────
     const heroParticles = document.querySelector('.hero-particles');
     if (heroParticles) {
         for (let i = 0; i < 12; i++) {
@@ -160,7 +175,26 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 3. Radial Progress animation
+    // ───────────────────────────────────────────────
+    // Holographic particles around hero name
+    // ───────────────────────────────────────────────
+    const heroName = document.querySelector(".hero-name");
+    const holoContainer = document.querySelector(".holo-particles");
+
+    if (holoContainer && heroName) {
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement("div");
+            particle.className = "holo-particle";
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 8}s`;
+            holoContainer.appendChild(particle);
+        }
+    }
+
+    // ───────────────────────────────────────────────
+    // Radial Progress animation
+    // ───────────────────────────────────────────────
     const progressBars = document.querySelectorAll(".radial-progress");
     let progressAnimated = false;
 
@@ -188,7 +222,9 @@ document.addEventListener("DOMContentLoaded", () => {
         skillsObserver.observe(skillsModal);
     }
 
-    // 4. Project filters
+    // ───────────────────────────────────────────────
+    // Project filters
+    // ───────────────────────────────────────────────
     document.querySelectorAll(".filters button").forEach(btn => {
         btn.addEventListener("click", () => {
             document.querySelectorAll(".filters button").forEach(b => b.classList.remove("active"));
@@ -201,7 +237,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 5. Contact form demo confetti
+    // ───────────────────────────────────────────────
+    // Contact form demo confetti
+    // ───────────────────────────────────────────────
     const contactForm = document.querySelector(".contact-form");
     if (contactForm) {
         contactForm.addEventListener("submit", e => {
@@ -215,7 +253,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 6. Snake-trail cursor (desktop only)
+    // ───────────────────────────────────────────────
+    // Snake-trail cursor (desktop only)
+    // ───────────────────────────────────────────────
     const cursorContainer = document.getElementById("cursor-container");
     if (cursorContainer && window.innerWidth > 1023) {
         const trailLength = 16;
@@ -260,7 +300,9 @@ document.addEventListener("DOMContentLoaded", () => {
         updateTrail();
     }
 
-    // 7. Background floating bots canvas
+    // ───────────────────────────────────────────────
+    // Background floating bots canvas
+    // ───────────────────────────────────────────────
     const canvas = document.getElementById('bg-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
@@ -319,7 +361,9 @@ document.addEventListener("DOMContentLoaded", () => {
         loop();
     }
 
-    // 8. Education items fade-in (works in modal too)
+    // ───────────────────────────────────────────────
+    // Education items fade-in
+    // ───────────────────────────────────────────────
     const eduObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -327,27 +371,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { threshold: 0.2 });
 
     document.querySelectorAll('.edu-item').forEach(item => eduObserver.observe(item));
-});
-// Hero name holographic particles + staggered text entrance
-document.addEventListener("DOMContentLoaded", () => {
-    const heroName = document.querySelector(".hero-name");
-    const holoContainer = document.querySelector(".holo-particles");
 
-    if (holoContainer && heroName) {
-        // Create 20 floating particles around name
-        for (let i = 0; i < 20; i++) {
-            const particle = document.createElement("div");
-            particle.className = "holo-particle";
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.top = `${Math.random() * 100}%`;
-            particle.style.animationDelay = `${Math.random() * 8}s`;
-            holoContainer.appendChild(particle);
-        }
-    }
-
-    // Staggered entrance for text elements
-    gsap.from(".subtitle", { y: 40, opacity: 0, duration: 1.2, delay: 0.8, ease: "power3.out" });
-    gsap.from(".location-gloomy", { y: 40, opacity: 0, duration: 1.2, delay: 1.1, ease: "power3.out" });
-    gsap.from(".tagline-gloomy", { y: 40, opacity: 0, duration: 1.2, delay: 1.4, ease: "power3.out" });
-    gsap.from(".cta-btn", { scale: 0.8, opacity: 0, duration: 1, delay: 1.8, ease: "back.out(1.7)" });
 });
