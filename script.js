@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const content = modal.querySelector(".modal-content");
         if (!content) return;
-
+        gsap.set(content, { transformPerspective: 1200 });
         gsap.fromTo(content,
             {
                 scale: 0.4,
