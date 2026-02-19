@@ -1,15 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    // 🔊 Modal Sound Setup
+    const modalSound = new Howl({
+        src: ['sound.mp3'], // change path if needed
+        volume: 0.6
+    });
+
     // Mobile hamburger toggle
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector(".nav-links");
 
     if (hamburger && navLinks) {
         hamburger.addEventListener("click", () => {
-            navLinks.classList.toggle("active");  // slide menu
-            hamburger.classList.toggle("open");   // animate X
+            navLinks.classList.toggle("active");
+            hamburger.classList.toggle("open");
         });
 
-        // Close menu when clicking a link
         navLinks.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", () => {
                 navLinks.classList.remove("active");
@@ -19,8 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ───────────────────────────────────────────────
-    // Modal Open / Close with Book-Opening Animation
+    // Modal Open / Close with Sound
     // ───────────────────────────────────────────────
+
     function openModal(modalId) {
         const modal = document.getElementById(modalId);
         if (!modal) {
@@ -28,18 +35,20 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        modal.classList.add("active"); // ✅ added
         modal.style.display = "flex";
         document.body.classList.add("no-scroll");
+
+        modalSound.play(); // 🔊 SOUND ON OPEN
 
         const content = modal.querySelector(".modal-content");
         if (!content) return;
 
-        // Book opens: starts closed (scaled + rotated), unfolds like pages
         gsap.fromTo(content,
             {
                 scale: 0.4,
                 opacity: 0.4,
-                rotationY: -80,              // closed book perspective
+                rotationY: -80,
                 transformOrigin: "left center",
                 skewX: -12
             },
@@ -53,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         );
 
-        // Background fade
         gsap.fromTo(modal,
             { background: "rgba(5,7,10,0)" },
             { background: "rgba(5,7,10,0.94)", duration: 1.2, ease: "power3.out" }
@@ -66,6 +74,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const content = modal.querySelector(".modal-content");
         if (!content) return;
 
+        modalSound.play(); // 🔊 SOUND ON CLOSE
+
         gsap.to(content, {
             scale: 0.4,
             opacity: 0.4,
@@ -74,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
             duration: 0.8,
             ease: "power3.in",
             onComplete: () => {
+                modal.classList.remove("active"); // ✅ added
                 modal.style.display = "none";
                 document.body.classList.remove("no-scroll");
             }
@@ -94,7 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Close buttons
     document.querySelectorAll(".close-modal").forEach(btn => {
         btn.addEventListener("click", () => {
             const modal = btn.closest(".modal");
@@ -102,14 +112,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Click outside to close
     window.addEventListener("click", e => {
         if (e.target.classList.contains("modal")) {
             closeModal(e.target);
         }
     });
 
-    // ESC key to close
     window.addEventListener("keydown", e => {
         if (e.key === "Escape") {
             const activeModal = document.querySelector(".modal.active");
@@ -117,16 +125,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // View Cover Letter from About modal
     document.querySelectorAll(".view-cover-letter").forEach(btn => {
         btn.addEventListener("click", () => {
             openModal("cover-modal");
         });
     });
 
-    // ───────────────────────────────────────────────
-    // All original features (unchanged)
-    // ───────────────────────────────────────────────
 
     // 1. GSAP Hero Entrance + glitch
     if (typeof gsap !== "undefined") {
