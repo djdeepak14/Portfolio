@@ -1,357 +1,637 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deepak Khanal - Automation Engineer Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deepak Khanal — Automation Engineer</title>
+  <meta name="description" content="Portfolio of Deepak Khanal — Automation Engineer, PLC programmer, robotics specialist & full-stack developer based in Helsinki, Finland.">
 
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@400;600&display=swap">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
 
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- Floating robots background -->
-    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+<!-- Floating background canvas -->
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
 
-    <!-- Hero subtle particles -->
-    <div class="hero-particles"></div>
+<!-- Hero subtle particles -->
+<div class="hero-particles" aria-hidden="true"></div>
 
-    <header>
-        <nav class="navbar">
-            <div class="logo">RESUME</div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+<!-- Custom cursor (desktop) -->
+<div id="cursor-container" aria-hidden="true"></div>
+<div class="cursor-outer" id="cursorOuter" aria-hidden="true"></div>
 
-            <ul class="nav-links">
-                <li><a href="#" data-modal="about-modal">About</a></li>
-                <li><a href="#" data-modal="skills-modal">Skills</a></li>
-                <li><a href="#" data-modal="projects-modal">Projects</a></li>
-                <li><a href="#" data-modal="experience-modal">Experience</a></li>
-                <li><a href="#" data-modal="education-modal">Education</a></li>
-                <li><a href="#" data-modal="contact-modal">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<!-- ══════════ NAVBAR ══════════ -->
+<header>
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="#" class="logo" aria-label="Home">Deepak Khanal</a>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-name typing-effect">Deepak Khanal</h1>
-            <p class="subtitle">Automation Engineer & IT Specialist</p>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
 
-            <p class="location-gloomy">
-                Helsinki, Finland | Willing to relocate | Available immediately
-            </p>
-            <p class="tagline-gloomy">
-                Building intelligent systems — from factory robots to real-time IoT dashboards
-            </p>
+    <ul class="nav-links" role="list">
+      <li><a href="#" data-modal="about-modal">About</a></li>
+      <li><a href="#" data-modal="skills-modal">Skills</a></li>
+      <li><a href="#" data-modal="projects-modal">Projects</a></li>
+      <li><a href="#" data-modal="experience-modal">Experience</a></li>
+      <li><a href="#" data-modal="education-modal">Education</a></li>
+      <li><a href="#" data-modal="contact-modal">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ══════════ HERO ══════════ -->
+<section id="home" class="hero">
+  <div class="hero-content">
+    <div class="hero-overline">Available · Helsinki, Finland</div>
+    <h1 class="hero-name typing-effect" data-text="Deepak Khanal">Deepak Khanal</h1>
+    <p class="subtitle">Automation Engineer &amp; IT Specialist</p>
+    <p class="location-gloomy">Helsinki, Finland · Open to relocation · Available immediately</p>
+    <p class="tagline-gloomy">Building intelligent systems — from factory robots to real-time IoT dashboards</p>
+    <button class="cta-btn" data-modal="contact-modal">Get In Touch</button>
+  </div>
+</section>
+
+<!-- ══════════ MODALS ══════════ -->
+
+<!-- About -->
+<div id="about-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="about-title">
+  <div class="modal-content">
+    <button class="close-modal" aria-label="Close">×</button>
+    <h2 id="about-title"><span class="label">01 / About</span>About Me</h2>
+    <div class="content-wrapper">
+      <p>I am a recent Automation Engineering graduate passionate about robotics, industrial automation, IoT solutions, and full-stack development.</p>
+      <p>With over 7 years of hands-on experience in fast-paced production environments in Finland and Japan, I have developed strong technical, operational, and problem-solving skills.</p>
+      <p>My core competencies include structured PLC programming (TwinCAT, TIA Portal), ABB RAPID robot programming, CAD/EPLAN design, Python + OpenCV computer vision, Node.js/React web &amp; IoT applications, and real-time system integration.</p>
+      <p>I thrive on turning complex challenges into reliable, efficient solutions and am constantly expanding my skill set.</p>
+      <button class="cta-btn view-cover-letter" style="margin-top: 2rem;">
+        View Cover Letter
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Skills -->
+<div id="skills-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="skills-title">
+  <div class="modal-content">
+    <button class="close-modal" aria-label="Close">×</button>
+    <h2 id="skills-title"><span class="label">02 / Skills</span>Core Skills</h2>
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/>
+        </svg>
+        <div class="radial-progress" data-percent="95"><span>95%</span></div>
+        <p>PLC Programming<br><small>TwinCAT · TIA Portal</small></p>
+      </div>
+
+      <div class="skill-card">
+        <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true">
+          <path d="M20.24 11.22l-1.42-1.42L15 14.59l-4.24-4.24-1.42 1.42L15 17.41l5.24-5.24z"/>
+          <path d="M12 2v4"/><circle cx="12" cy="12" r="3"/>
+        </svg>
+        <div class="radial-progress" data-percent="90"><span>90%</span></div>
+        <p>Robot Programming<br><small>ABB RAPID</small></p>
+      </div>
+
+      <div class="skill-card">
+        <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+          <line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
+        </svg>
+        <div class="radial-progress" data-percent="88"><span>88%</span></div>
+        <p>Computer Vision &amp; Python<br><small>OpenCV · YOLO</small></p>
+      </div>
+
+      <div class="skill-card">
+        <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true">
+          <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+        </svg>
+        <div class="radial-progress" data-percent="85"><span>85%</span></div>
+        <p>Full-Stack &amp; IoT<br><small>React · Node.js · Socket.IO</small></p>
+      </div>
+
+      <div class="skill-card">
+        <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/>
+        </svg>
+        <div class="radial-progress" data-percent="92"><span>92%</span></div>
+        <p>CAD / EPLAN Design</p>
+      </div>
+
+      <div class="skill-card">
+        <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        <div class="radial-progress" data-percent="87"><span>87%</span></div>
+        <p>GSAP · MATLAB · Photoshop</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Projects -->
+<div id="projects-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="projects-title">
+  <div class="modal-content">
+    <button class="close-modal" aria-label="Close">×</button>
+    <h2 id="projects-title"><span class="label">03 / Projects</span>Selected Projects</h2>
+    <div class="filters" role="group" aria-label="Filter projects">
+      <button data-filter="all" class="active">All</button>
+      <button data-filter="automation">Automation</button>
+      <button data-filter="robotics">Robotics</button>
+      <button data-filter="iot">IoT</button>
+      <button data-filter="web">Web</button>
+    </div>
+    <div class="project-grid">
+      <article class="project-card" data-category="automation">
+        <h3>Smart Traffic Counting System</h3>
+        <p>Real-time vehicle detection &amp; counting using YOLO + OpenCV — Master's thesis project with live results.</p>
+        <div class="links">
+          <a href="https://github.com/djdeepak14/" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="https://urn.fi/URN:NBN:fi:amk-2025112529719" target="_blank" rel="noopener">Thesis ↗</a>
         </div>
-    </section>
-
-    <!-- ──────────────────────────────────────────────── -->
-    <!--                  M O D A L S                     -->
-    <!-- ──────────────────────────────────────────────── -->
-
-    <div id="about-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">×</span>
-            <h2>About Me</h2>
-            <div class="content-wrapper">
-                <p>I am a recent Automation Engineering graduate passionate about robotics, industrial automation, IoT
-                    solutions, and full-stack development.</p>
-                <p>With over 7 years of hands-on experience in fast-paced production environments in Finland and Japan,
-                    I
-                    have developed strong technical, operational, and problem-solving skills.</p>
-                <p>My core competencies include structured PLC programming (TwinCAT, TIA Portal), ABB RAPID robot
-                    programming, CAD/EPLAN design, Python + OpenCV computer vision, Node.js/React web & IoT
-                    applications,
-                    and real-time system integration.</p>
-                <p>I thrive on turning complex challenges into reliable, efficient solutions and am constantly expanding
-                    my
-                    skill set.</p>
-
-                <button class="cta-btn view-cover-letter"
-                    style="margin-top: 2.5rem; font-size: 1.2rem; padding: 1.4rem 4rem; min-width: 280px;">
-                    View Cover Letter
-                </button>
-            </div>
+      </article>
+      <article class="project-card" data-category="robotics">
+        <h3>Industrial Robot Programming</h3>
+        <p>ABB RAPID programs for handling, picking, greasing &amp; palletizing with robust state machines.</p>
+        <div class="links">
+          <a href="https://github.com/djdeepak14/" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
+      </article>
+      <article class="project-card" data-category="iot">
+        <h3>IoT Sensor Monitoring Dashboard</h3>
+        <p>Real-time sensor data visualization with Node.js backend, WebSocket streams &amp; interactive frontend.</p>
+        <div class="links">
+          <a href="https://github.com/djdeepak14/" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </article>
+      <article class="project-card" data-category="web">
+        <h3>React Laundry Booking System</h3>
+        <p>Full-featured weekly scheduling app with booking limits, auth &amp; responsive tenant UI.</p>
+        <div class="links">
+          <a href="https://github.com/djdeepak14/" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </article>
+      <article class="project-card" data-category="automation">
+        <h3>Industrial Automation Dashboard</h3>
+        <p>Real-time equipment monitoring with animated live charts, threshold alerts &amp; historical logs.</p>
+        <div class="links">
+          <a href="https://github.com/djdeepak14/" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<!-- Experience -->
+<div id="experience-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="experience-title">
+  <div class="modal-content">
+    <button class="close-modal" aria-label="Close">×</button>
+    <h2 id="experience-title"><span class="label">04 / Experience</span>Professional Experience</h2>
+    <div class="timeline">
+      <div class="exp-item">
+        <div class="exp-icon" aria-hidden="true">💻</div>
+        <h3>Sevas Kodit Oy — Full Stack Developer</h3>
+        <p class="period">Finland · 2024 – 2025</p>
+        <p>Developed and maintained a modern online laundry booking system using React, Node.js, and modern web technologies. Implemented user authentication, real-time scheduling, booking limits, admin dashboard, and responsive UI for seamless tenant experience.</p>
+      </div>
+      <div class="exp-item">
+        <div class="exp-icon" aria-hidden="true">🛠️</div>
+        <h3>Somaarjun Tech — IT Support &amp; Frontend Developer</h3>
+        <p class="period">2023 – 2024</p>
+        <p>Provided IT support, hardware/software troubleshooting, and network assistance. Contributed to frontend development using HTML, CSS, JavaScript, and React — building user interfaces and improving client-facing web applications.</p>
+      </div>
+      <div class="exp-item">
+        <div class="exp-icon" aria-hidden="true">🍔</div>
+        <h3>Hesburger — Production &amp; Operations</h3>
+        <p class="period">Finland · 2023 – 2025</p>
+        <p>High-volume production, inventory management, quality control, and process optimization in a fast-paced environment.</p>
+      </div>
+      <div class="exp-item">
+        <div class="exp-icon" aria-hidden="true">🍣</div>
+        <h3>Katsuya &amp; Izakaya — Sushi &amp; Japanese Cuisine</h3>
+        <p class="period">Japan · 2015 – 2019</p>
+        <p>Precise food preparation, quality-focused operations, and teamwork in a high-pressure professional kitchen.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Education -->
+<div id="education-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="education-title">
+  <div class="modal-content">
+    <button class="close-modal" aria-label="Close">×</button>
+    <h2 id="education-title"><span class="label">05 / Education</span>Education &amp; Qualifications</h2>
+    <div class="education-timeline">
+      <div class="edu-item">
+        <div class="edu-dot"></div>
+        <h3>Bachelor of Engineering</h3>
+        <p class="edu-subtitle"><strong>Automation &amp; Technical Systems</strong></p>
+        <p class="edu-date">Graduated 2025 · Finland</p>
+      </div>
+      <div class="edu-item">
+        <div class="edu-dot"></div>
+        <h3>Higher Secondary School</h3>
+        <p class="edu-subtitle"><strong>Major in Science</strong></p>
+        <p class="edu-date">Graduated 2013 · Nepal</p>
+      </div>
+      <div class="edu-item">
+        <div class="edu-dot"></div>
+        <h3>International School of Business (ISB)</h3>
+        <p class="edu-subtitle"><strong>Vocational College — Full-time Language Study</strong></p>
+        <p class="edu-date">Graduated 2017 · Tokyo, Japan</p>
+      </div>
+      <div class="edu-item">
+        <div class="edu-dot"></div>
+        <h3>Bachelor's Degree (Coursework Completed)</h3>
+        <p class="edu-subtitle"><strong>Media and Information Technology</strong></p>
+        <p class="edu-date">2 Years Completed (2018) · Saitama, Tokyo, Japan</p>
+      </div>
+      <div class="edu-item additional">
+        <div class="edu-dot"></div>
+        <h3>Additional Information</h3>
+        <ul class="info-list">
+          <li>Valid Finnish residence permit</li>
+          <li>Available to start immediately</li>
+          <li>Open to relocation in Finland</li>
+          <li>Fluent in English (written &amp; spoken)</li>
+          <li>Basic Finnish language skills</li>
+          <li>Strong analytical thinking</li>
+          <li>Fast learner, self-motivated</li>
+          <li>Team-oriented &amp; independent</li>
+          <li>Multicultural experience (Finland &amp; Japan)</li>
+          <li>Comfortable with shift-based work</li>
+          <li>Responsible &amp; detail-oriented</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Contact -->
+<div id="contact-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+  <div class="modal-content">
+    <button class="close-modal" aria-label="Close">×</button>
+    <h2 id="contact-title"><span class="label">06 / Contact</span>Get in Touch</h2>
+
+    <div class="contact-info-row">
+      <a href="tel:+358415705989" class="contact-chip">
+        <span>📞</span> +358 41 5705989
+      </a>
+      <a href="mailto:djdeepakdj14@gmail.com" class="contact-chip">
+        <span>✉️</span> djdeepakdj14@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/deepak-khanal-419266252/" target="_blank" rel="noopener" class="contact-chip">
+        <span>🔗</span> LinkedIn Profile
+      </a>
     </div>
 
-    <div id="skills-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">×</span>
-            <h2>Core Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="8" y1="10" x2="16" y2="10"></line>
-                        <line x1="8" y1="14" x2="16" y2="14"></line>
-                    </svg>
-                    <div class="radial-progress" data-percent="95"><span>95%</span></div>
-                    <p>PLC Programming<br><small>TwinCAT • TIA Portal</small></p>
-                </div>
+    <form action="https://formsubmit.co/djdeepakdj14@gmail.com" method="POST" class="contact-form" novalidate>
+      <input type="text"     name="name"    placeholder="Your Name"    required autocomplete="name">
+      <input type="email"    name="email"   placeholder="Your Email"   required autocomplete="email">
+      <textarea              name="message" placeholder="Your Message" rows="5" required></textarea>
+      <input type="hidden"   name="_captcha" value="false">
+      <input type="hidden"   name="_next"    value="https://portfolio-44vtv7l9w-djdeepak14s-projects.vercel.app/">
+      <button type="submit" class="send-btn">Send Message</button>
+    </form>
+  </div>
+</div>
 
-                <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2">
-                        <path d="M20.24 11.22l-1.42-1.42L15 14.59l-4.24-4.24-1.42 1.42L15 17.41l5.24-5.24z"></path>
-                        <path d="M12 2v4"></path>
-                        <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                    <div class="radial-progress" data-percent="90"><span>90%</span></div>
-                    <p>Robot Programming<br><small>ABB RAPID</small></p>
-                </div>
+<!-- Cover Letter -->
+<div id="cover-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="cover-title">
+  <div class="modal-content">
+    <button class="close-modal" aria-label="Close">×</button>
+    <h2 id="cover-title"><span class="label">Cover Letter</span>Application</h2>
+    <p>Dear Hiring Manager,</p>
+    <p>As a recent Automation Engineering graduate with practical experience in PLC programming, robotics, IoT systems, full-stack development, and computer vision, I am excited to bring technical skill, dedication, and a strong work ethic to your team.</p>
+    <p>My projects include real-time YOLO-based traffic monitoring, ABB robot programming with state machines, IoT sensor dashboards, and React-based booking systems. I am comfortable with TwinCAT, TIA Portal, Python/OpenCV, Node.js/React, and GSAP animations.</p>
+    <p>Years of working in fast-paced environments in logistics and hospitality have strengthened my ability to collaborate, adapt quickly, communicate effectively, and perform reliably under pressure.</p>
+    <p>I would welcome the opportunity to contribute to innovative automation and technology projects while continuing to grow professionally.</p>
+    <p>Thank you for your time and consideration.</p>
+    <p>Sincerely,<br><strong>Deepak Khanal</strong></p>
+  </div>
+</div>
 
-                <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
-                        <line x1="9" y1="9" x2="9.01" y2="9"></line>
-                        <line x1="15" y1="9" x2="15.01" y2="9"></line>
-                    </svg>
-                    <div class="radial-progress" data-percent="88"><span>88%</span></div>
-                    <p>Computer Vision & Python<br><small>OpenCV • YOLO</small></p>
-                </div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
 
-                <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2">
-                        <polyline points="16 18 22 12 16 6"></polyline>
-                        <polyline points="8 6 2 12 8 18"></polyline>
-                    </svg>
-                    <div class="radial-progress" data-percent="85"><span>85%</span></div>
-                    <p>Full-Stack & IoT<br><small>React • Node.js • Socket.IO</small></p>
-                </div>
+  /* ── Navbar scroll shrink ── */
+  const navbar = document.querySelector(".navbar");
+  window.addEventListener("scroll", () => {
+    navbar.classList.toggle("scrolled", window.scrollY > 60);
+  });
 
-                <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="9" y1="9" x2="15" y2="15"></line>
-                        <line x1="15" y1="9" x2="9" y2="15"></line>
-                    </svg>
-                    <div class="radial-progress" data-percent="92"><span>92%</span></div>
-                    <p>CAD / EPLAN Design</p>
-                </div>
+  /* ── Hamburger ── */
+  const hamburger = document.querySelector(".hamburger");
+  const navLinks  = document.querySelector(".nav-links");
+  if (hamburger && navLinks) {
+    hamburger.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("active");
+      hamburger.classList.toggle("open", open);
+      hamburger.setAttribute("aria-expanded", open);
+    });
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+        hamburger.classList.remove("open");
+        hamburger.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
 
-                <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                    </svg>
-                    <div class="radial-progress" data-percent="87"><span>87%</span></div>
-                    <p>GSAP • MATLAB • Photoshop</p>
-                </div>
-            </div>
-        </div>
-    </div>
+  /* ── Modal helpers ── */
+  function openModal(id) {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.add("active");
+    modal.style.display = "flex";
+    document.body.classList.add("no-scroll");
 
-    <div id="projects-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">×</span>
-            <h2>Selected Projects</h2>
-            <div class="filters">
-                <button data-filter="all" class="active">All</button>
-                <button data-filter="automation">Automation</button>
-                <button data-filter="robotics">Robotics</button>
-                <button data-filter="iot">IoT</button>
-                <button data-filter="web">Web</button>
-            </div>
-            <div class="project-grid">
-                <div class="project-card" data-category="automation">
-                    <h3>Smart Traffic Counting System</h3>
-                    <p>Real-time vehicle detection & counting using YOLO + OpenCV (Master's thesis project)</p>
-                    <div class="links">
-                        <a href="https://github.com/djdeepak14/" target="_blank">GitHub</a>
-                        <a href="https://urn.fi/URN:NBN:fi:amk-2025112529719" target="_blank">View Thesis</a>
-                    </div>
-                </div>
+    const content = modal.querySelector(".modal-content");
+    if (!content || typeof gsap === "undefined") return;
 
-                <div class="project-card" data-category="robotics">
-                    <h3>Industrial Robot Programming</h3>
-                    <p>ABB RAPID programs for handling, picking, greasing & palletizing with state machines</p>
-                    <div class="links">
-                        <a href="https://github.com/djdeepak14/" target="_blank">GitHub</a>
-                    </div>
-                </div>
+    gsap.set(content, { transformPerspective: 1400 });
+    gsap.fromTo(content,
+      { scale: 0.5, opacity: 0, rotationY: -70, skewX: -8, transformOrigin: "left center" },
+      { scale: 1,   opacity: 1, rotationY:   0, skewX:  0, duration: 0.85, ease: "power4.out" }
+    );
+    gsap.fromTo(modal,
+      { backgroundColor: "rgba(2,4,9,0)" },
+      { backgroundColor: "rgba(2,4,9,0.85)", duration: 0.6, ease: "power2.out" }
+    );
 
-                <div class="project-card" data-category="iot">
-                    <h3>IoT Sensor Monitoring Dashboard</h3>
-                    <p>Real-time sensor data visualization with Node.js backend & interactive frontend</p>
-                    <div class="links">
-                        <a href="https://github.com/djdeepak14/" target="_blank">GitHub</a>
-                    </div>
-                </div>
+    /* Animate skill progress bars when skills modal opens */
+    if (id === "skills-modal") {
+      document.querySelectorAll(".radial-progress").forEach(bar => {
+        const pct = parseFloat(bar.dataset.percent) || 0;
+        gsap.fromTo(bar,
+          { background: "conic-gradient(var(--accent) 0%, rgba(12,22,38,0.8) 0%)" },
+          {
+            duration: 1.8,
+            ease: "power3.out",
+            delay: 0.4,
+            onUpdate: function() {
+              const p = Math.round(this.progress() * pct);
+              bar.style.background = `conic-gradient(var(--accent) ${p}%, rgba(12,22,38,0.8) ${p}%)`;
+            }
+          }
+        );
+      });
+    }
+  }
 
-                <div class="project-card" data-category="web">
-                    <h3>React Laundry Booking System</h3>
-                    <p>Weekly scheduling app with booking limits and responsive UI</p>
-                    <div class="links">
-                        <a href="https://github.com/djdeepak14/" target="_blank">GitHub</a>
-                    </div>
-                </div>
+  function closeModal(modal) {
+    if (!modal) return;
+    const content = modal.querySelector(".modal-content");
+    if (!content || typeof gsap === "undefined") {
+      modal.classList.remove("active");
+      modal.style.display = "none";
+      document.body.classList.remove("no-scroll");
+      return;
+    }
+    gsap.to(content, {
+      scale: 0.5, opacity: 0, rotationY: -70, skewX: -8,
+      duration: 0.6, ease: "power3.in",
+      onComplete: () => {
+        modal.classList.remove("active");
+        modal.style.display = "none";
+        document.body.classList.remove("no-scroll");
+      }
+    });
+    gsap.to(modal, { backgroundColor: "rgba(2,4,9,0)", duration: 0.5, ease: "power2.in" });
+  }
 
-                <div class="project-card" data-category="automation">
-                    <h3>Industrial Automation Dashboard</h3>
-                    <p>Real-time equipment monitoring with animated charts & alerts</p>
-                    <div class="links">
-                        <a href="https://github.com/djdeepak14/" target="_blank">GitHub</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  document.querySelectorAll("[data-modal]").forEach(el => {
+    el.addEventListener("click", e => { e.preventDefault(); openModal(el.dataset.modal); });
+  });
 
-    <div id="experience-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">×</span>
-            <h2>Professional Experience</h2>
-            <div class="timeline">
-                <div class="exp-item">
-                    <div class="exp-icon">💻</div>
-                    <h3>Sevas Kodit Oy – Full Stack Developer</h3>
-                    <p class="period">Finland, 2024–2025</p>
-                    <p>Developed and maintained a modern online laundry booking system using React, Node.js, and modern
-                        web
-                        technologies. Implemented user authentication, real-time scheduling, booking limits, admin
-                        dashboard, and responsive UI for seamless tenant experience.</p>
-                </div>
+  document.querySelectorAll(".close-modal").forEach(btn => {
+    btn.addEventListener("click", () => closeModal(btn.closest(".modal")));
+  });
 
-                <div class="exp-item">
-                    <div class="exp-icon">🛠️</div>
-                    <h3>Somaarjun Tech Company – IT Support & Frontend Developer</h3>
-                    <p class="period">2023–2024</p>
-                    <p>Provided IT support, hardware/software troubleshooting, and network assistance. Simultaneously
-                        contributed to frontend development projects using HTML, CSS, JavaScript, and React — building
-                        user
-                        interfaces and improving client-facing web applications.</p>
-                </div>
+  window.addEventListener("click", e => {
+    if (e.target.classList.contains("modal")) closeModal(e.target);
+  });
 
-                <div class="exp-item">
-                    <div class="exp-icon">🍔</div>
-                    <h3>Hesburger – Production & Operations</h3>
-                    <p class="period">Finland, 2023–2025</p>
-                    <p>High-volume production, inventory management, quality control, process optimization in fast-paced
-                        environment.</p>
-                </div>
+  window.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+      const active = document.querySelector(".modal.active");
+      if (active) closeModal(active);
+    }
+  });
 
-                <div class="exp-item">
-                    <div class="exp-icon">🍣</div>
-                    <h3>Katsuya & Izakaya – Sushi & Japanese Cuisine</h3>
-                    <p class="period">Japan, 2015–2019</p>
-                    <p>Precise food preparation, quality-focused operations, teamwork in high-pressure professional
-                        kitchen.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+  document.querySelectorAll(".view-cover-letter").forEach(btn => {
+    btn.addEventListener("click", () => openModal("cover-modal"));
+  });
 
-    <div id="education-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">×</span>
-            <h2>Education & Qualifications</h2>
-            <div class="education-timeline">
-                <div class="edu-item">
-                    <div class="edu-dot"></div>
-                    <h3>Bachelor of Engineering</h3>
-                    <p class="edu-subtitle"><strong>Automation & Technical Systems</strong></p>
-                    <p class="edu-date">Graduated 2025 – Finland</p>
-                </div>
-                <div class="edu-item">
-                    <div class="edu-dot"></div>
-                    <h3>Higher secondary school</h3>
-                    <p class="edu-subtitle"><strong>Major in Science</strong></p>
-                    <p class="edu-date">Graduated 2013 – Nepal</p>
-                </div>
-                <div class="edu-item">
-                    <div class="edu-dot"></div>
-                    <h3>International School of Business (ISB)</h3>
-                    <p class="edu-subtitle"><strong>Vocational College for fulltime language study</strong></p>
-                    <p class="edu-date">Graduated 2017 – Tokyo,Japan</p>
-                </div>
-                <div class="edu-item">
-                    <div class="edu-dot"></div>
-                    <h3>Bachelor’s Degree (Coursework Completed)</h3>
-                    <p class="edu-subtitle"><strong>Media and Information Technology</strong></p>
-                    <p class="edu-date">2 Years Completed (2018) | Saitama, Tokyo, Japan</p>
-                </div>
+  /* ── Hero GSAP ── */
+  if (typeof gsap !== "undefined") {
+    const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+    tl.from(".hero-overline", { y: -20, opacity: 0, duration: 0.8, delay: 0.3 })
+      .from(".hero-name",     { y: 60,  opacity: 0, duration: 1.0 }, "-=0.4")
+      .from(".subtitle",      { y: 30,  opacity: 0, duration: 0.8 }, "-=0.5")
+      .from(".location-gloomy",{ y: 20, opacity: 0, duration: 0.7 }, "-=0.4")
+      .from(".tagline-gloomy", { y: 20, opacity: 0, duration: 0.7 }, "-=0.5")
+      .from(".cta-btn",       { scale: 0.85, opacity: 0, duration: 0.6, ease: "back.out(1.7)" }, "-=0.3");
 
-                <div class="edu-item additional">
-                    <div class="edu-dot"></div>
-                    <h3>Additional Information</h3>
-                    <ul class="info-list">
-                        <li>Valid Finnish residence permit</li>
-                        <li>Available to start immediately</li>
-                        <li>Open to relocation anywhere in Finland</li>
-                        <li>Fluent in English (written & spoken)</li>
-                        <li>Basic Finnish language skills</li>
-                        <li>Strong problem-solving and analytical thinking ability</li>
-                        <li>Fast learner with strong self-learning mindset</li>
-                        <li>Team-oriented with ability to work independently</li>
-                        <li>Experience working in multicultural environments (Finland & Japan)</li>
-                        <li>Physically fit and comfortable with shift-based work</li>
-                        <li>Responsible, punctual, and detail-oriented</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+    /* Glitch pulse on hero name */
+    gsap.timeline({ repeat: -1, repeatDelay: 6, delay: 4 })
+      .to(".hero-name", { x: -4, skewX: 8,  duration: 0.06, ease: "none" })
+      .to(".hero-name", { x:  4, skewX: -8, duration: 0.06, ease: "none" })
+      .to(".hero-name", { x:  0, skewX: 0,  duration: 0.12, ease: "none" })
+      .to(".hero-name", { x: -2, skewX: 4,  duration: 0.05, ease: "none" })
+      .to(".hero-name", { x:  0, skewX: 0,  duration: 0.08, ease: "none" });
+  }
 
-    <div id="contact-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">×</span>
-            <h2>Get in Touch</h2>
-            <p>Phone: +358 41 5705989</p>
-            <p>Email: <a href="mailto:djdeepakdj14@gmail.com">djdeepakdj14@gmail.com</a></p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/deepak-khanal-419266252/"
-                    target="_blank">linkedin.com/in/deepak-khanal-419266252</a></p>
+  /* ── Hero particles ── */
+  const heroParticles = document.querySelector('.hero-particles');
+  if (heroParticles) {
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = 1.5 + Math.random() * 3.5;
+      p.style.cssText = `
+        width:${size}px; height:${size}px;
+        left:${Math.random() * 100}%;
+        top:${80 + Math.random() * 20}%;
+        animation-delay:${Math.random() * 15}s;
+        animation-duration:${18 + Math.random() * 22}s;
+        opacity:0;
+        background: ${Math.random() > 0.5 ? 'var(--accent)' : 'var(--accent-2)'};
+      `;
+      heroParticles.appendChild(p);
+    }
+  }
 
-            <form action="https://formsubmit.co/djdeepakdj14@gmail.com" method="POST" class="contact-form">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://portfolio-44vtv7l9w-djdeepak14s-projects.vercel.app/">
-                <button type="submit" class="send-btn">Send Message</button>
-            </form>
-        </div>
-    </div>
+  /* ── Snake cursor (desktop) ── */
+  const cursorContainer = document.getElementById("cursor-container");
+  const cursorOuter     = document.getElementById("cursorOuter");
+  let mouseX = 0, mouseY = 0;
 
-    <!-- Cover Letter Modal -->
-    <div id="cover-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">×</span>
-            <h2>Cover Letter</h2>
-            <p>Dear Hiring Manager,</p>
-            <p>As a recent Automation Engineering graduate with practical experience in PLC programming, robotics,
-                IoT systems, full-stack development, and computer vision, I am excited to bring technical skill,
-                dedication, and a strong work ethic to your team.</p>
-            <p>My projects include real-time YOLO-based traffic monitoring, ABB robot programming with state
-                machines, IoT sensor dashboards, and React-based booking systems. I am comfortable with TwinCAT, TIA
-                Portal, Python/OpenCV, Node.js/React, and GSAP animations.</p>
-            <p>Years of working in fast-paced environments in logistics and hospitality have strengthened my ability
-                to collaborate, adapt quickly, communicate effectively, and perform reliably under pressure.</p>
-            <p>I would welcome the opportunity to contribute to innovative automation and technology projects while
-                continuing to grow professionally.</p>
-            <p>Thank you for your time and consideration.</p>
-            <p>Sincerely,<br>Deepak Khanal</p>
-        </div>
-    </div>
+  if (cursorContainer && window.innerWidth > 1023) {
+    const LENGTH = 14;
+    const segments = [];
 
-    <!-- Snake trail cursor container -->
-    <div id="cursor-container"></div>
+    for (let i = 0; i < LENGTH; i++) {
+      const seg = document.createElement("div");
+      seg.className = "cursor-segment";
+      const s = Math.max(4, 14 - i * 0.7);
+      seg.style.cssText = `
+        width:${s}px; height:${s}px;
+        opacity:${0.9 - (i / LENGTH) * 0.8};
+        mix-blend-mode:screen;
+      `;
+      cursorContainer.appendChild(seg);
+      segments.push({ el: seg, x: 0, y: 0 });
+    }
 
-    <script src="script.js" defer></script>
+    window.addEventListener("mousemove", e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (cursorOuter) {
+        cursorOuter.style.left = e.clientX + "px";
+        cursorOuter.style.top  = e.clientY + "px";
+      }
+    });
 
+    /* Cursor grow on interactive elements */
+    document.querySelectorAll("a, button, [data-modal]").forEach(el => {
+      el.addEventListener("mouseenter", () => cursorOuter?.classList.add("hovering"));
+      el.addEventListener("mouseleave", () => cursorOuter?.classList.remove("hovering"));
+    });
+
+    let px = 0, py = 0;
+    const ease = 0.22;
+
+    function animateCursor() {
+      px += (mouseX - px) * ease;
+      py += (mouseY - py) * ease;
+
+      segments[0].x = px;
+      segments[0].y = py;
+      segments[0].el.style.left = px + "px";
+      segments[0].el.style.top  = py + "px";
+
+      for (let i = 1; i < LENGTH; i++) {
+        const prev = segments[i - 1];
+        const curr = segments[i];
+        curr.x += (prev.x - curr.x) * ease;
+        curr.y += (prev.y - curr.y) * ease;
+        curr.el.style.left = curr.x + "px";
+        curr.el.style.top  = curr.y + "px";
+      }
+
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+  }
+
+  /* ── Background bot canvas ── */
+  const canvas = document.getElementById('bg-canvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    const resize = () => { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; };
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Bot {
+      constructor() { this.init(); }
+      init() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.sz = 10 + Math.random() * 20;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.rot = Math.random() * Math.PI * 2;
+        this.rs = (Math.random() - 0.5) * 0.012;
+        this.alpha = 0.04 + Math.random() * 0.08;
+        this.hue = Math.random() > 0.5 ? 155 : 200;
+        this.pulse = Math.random() * Math.PI * 2;
+      }
+      tick() {
+        this.x += this.vx; this.y += this.vy;
+        this.rot += this.rs; this.pulse += 0.012;
+        if (this.x < -60 || this.x > w + 60 || this.y < -60 || this.y > h + 60) this.init();
+      }
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rot);
+        ctx.globalAlpha = this.alpha + Math.sin(this.pulse) * 0.03;
+        ctx.strokeStyle = `hsla(${this.hue}, 85%, 60%, 0.5)`;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(-this.sz/2, -this.sz/1.7, this.sz, this.sz * 1.4);
+        ctx.restore();
+      }
+    }
+
+    const bots = Array.from({ length: 14 }, () => new Bot());
+
+    function loop() {
+      ctx.fillStyle = 'rgba(2,4,9,0.07)';
+      ctx.fillRect(0, 0, w, h);
+      bots.forEach(b => { b.tick(); b.draw(); });
+      requestAnimationFrame(loop);
+    }
+    loop();
+  }
+
+  /* ── Project filters ── */
+  document.querySelectorAll(".filters button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".filters button").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const filter = btn.dataset.filter;
+      document.querySelectorAll(".project-card").forEach(card => {
+        const show = filter === "all" || card.dataset.category === filter;
+        card.style.display = show ? "block" : "none";
+        if (show && typeof gsap !== "undefined") {
+          gsap.fromTo(card, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" });
+        }
+      });
+    });
+  });
+
+  /* ── Education fade-in ── */
+  const eduObserver = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add("visible"), i * 120);
+        eduObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll(".edu-item").forEach(item => eduObserver.observe(item));
+
+  /* ── Contact form confetti ── */
+  const form = document.querySelector(".contact-form");
+  if (form) {
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      if (!e.target.checkValidity()) return;
+      if (typeof confetti !== "undefined") {
+        confetti({ particleCount: 160, spread: 90, origin: { y: 0.6 },
+          colors: ["#00ffaa", "#00c3ff", "#ffffff"] });
+      }
+      setTimeout(() => alert("Message sent! (Demo mode — configure FormSubmit for live sending)"), 500);
+      e.target.reset();
+    });
+  }
+
+});
+</script>
 </body>
-
 </html>
