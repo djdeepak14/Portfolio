@@ -1,112 +1,25 @@
-<h1 align="center">🚀 Deepak Khanal – Automation Engineer Portfolio</h1>
+# Deepak Khanal — Portfolio
 
-<p align="center">
-  Interactive animated portfolio website showcasing my skills in Automation, Robotics, IoT, and Web Development.
-</p>
+Animated, fully responsive personal portfolio. Live: https://www.deepak-khanal.com.np
 
-<p align="center">
-  🌐 <a href="https://www.deepak-khanal.com.np" target="_blank"><strong>Visit Live Website</strong></a>
-</p>
+## Features
+- Responsive layout for phone, tablet and desktop (mobile menu, touch-friendly, safe-area aware)
+- Animated hero (canvas sky, typing effect) that pauses when off-screen
+- Custom cursor on desktop mouse devices only (native cursor kept on touch)
+- Filterable skills, project detail modals (Esc to close, keyboard accessible)
+- **Visitor counter** in the navbar (counts once per browser)
+- Working contact form (Web3Forms, falls back to your mail app)
+- Respects `prefers-reduced-motion`; works with JavaScript disabled
 
----
+## Structure
+```
+index.html   markup
+style.css    styles
+script.js    behaviour + CONFIG block at the top
+```
 
-## 📌 About This Project
-
-This is my personal interactive portfolio website designed to showcase my:
-
-- Automation & robotics projects
-- PLC & ABB RAPID programming expertise
-- Computer vision & IoT projects
-- Full-stack development experience
-- Professional experience & education
-
-The website features modern animations, modal-based navigation, dynamic skill indicators, and interactive project displays.
-
----
-
-## ✨ Key Features
-
-- Fully responsive and modern design  
-- Animated hero section with typing effect  
-- Interactive modal-based navigation for sections: About, Skills, Projects, Experience, Education, Contact  
-- Skill progress indicators with radial charts  
-- Project filtering by categories (Automation, Robotics, IoT, Web)  
-- Animated canvas background and particles  
-- Confetti & sound effects for interactive elements  
-- Contact form with email integration  
-
----
-
-## 🛠️ Tech Stack
-
-| Technology | Purpose |
-|------------|---------|
-| HTML5      | Structure |
-| CSS3       | Styling & animations |
-| JavaScript | Interactivity |
-| GSAP       | Smooth advanced animations |
-| Howler.js  | Sound effects |
-| Canvas API | Animated backgrounds & particles |
-| Vercel     | Deployment |
-| Custom Domain | www.deepak-khanal.com.np |
-
----
-
-## 📂 Project Structure
-
-
-
----
-
-## 🖥️ Sections Included
-
-### 🏠 Hero
-- Name & professional title  
-- Location, availability, and tagline  
-- Dynamic animated effects  
-
-### 👤 About
-- Career summary and strengths  
-- Cover letter modal  
-
-### 🧠 Skills
-- PLC Programming (TwinCAT, TIA Portal)  
-- Robot Programming (ABB RAPID)  
-- Computer Vision & Python (OpenCV, YOLO)  
-- Full-Stack Development (React, Node.js)  
-- CAD / EPLAN Design  
-
-### 📂 Projects
-- Filterable by category: Automation, Robotics, IoT, Web  
-- Example projects: Traffic Monitoring System, Robot Programming, IoT Dashboard, Laundry Booking System  
-
-### 💼 Experience
-- Sevas Kodit Oy – Full Stack Developer  
-- Somaarjun Tech – IT & Frontend Developer  
-- Hesburger – Production & Operations  
-- Katsuya & Izakaya – Sushi & Japanese Cuisine  
-
-### 🎓 Education
-- Bachelor of Engineering – Automation & Technical Systems  
-- Media & Information Technology coursework  
-- International studies in Japan  
-
-### 📬 Contact
-- Email: djdeepakdj14@gmail.com  
-- Phone: +358 41 5705989  
-- LinkedIn: https://www.linkedin.com/in/deepak-khanal-419266252/  
-- Direct contact form on site  
-
----
-
-## 🚀 Live Website
-
-Your portfolio is live at:
-
-🌐 **[www.deepak-khanal.com.np](https://www.deepak-khanal.com.np)**
-
----
-
-## ⭐ Support
-
-If you find this portfolio inspiring or useful, feel free to **star this repository** or share it with others!
+## Setup
+1. **Contact form:** get a free access key at https://web3forms.com and set `CONFIG.web3formsKey` in `script.js`.
+2. **Visitor counter:** uses the free Abacus API (`CONFIG.counter`). Change `ns` to your own unique name. If the service is unreachable the counter hides itself.
+3. Replace the project "GitHub" links with the real repository URLs.
+4. Deploy on Vercel / any static host. No build step.
