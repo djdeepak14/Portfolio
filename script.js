@@ -41,7 +41,7 @@ function initCursor() {
   const ctx = canvas.getContext('2d');
   const mk = cls => { const d = document.createElement('div'); d.className = cls; document.body.appendChild(d); return d; };
   const dot = mk('cur-dot'), ring = mk('cur-ring');
-  const colors = [[200,180,120],[232,212,160],[255,248,220],[200,220,245],[255,255,255]];
+  const colors = [[30,95,214],[14,165,164],[242,106,27],[74,141,240],[15,34,56]];
   const parts = [];
   let mx = -100, my = -100, rx = -100, ry = -100, running = false, visible = false;
 
@@ -90,50 +90,59 @@ function initCursor() {
   }
 }
 
-/* ===== HERO CANVAS (pauses off-screen / hidden tab) ===== */
+/* ===== HERO CANVAS — circuit / IoT network on blueprint paper (pauses off-screen) ===== */
 function initHeroCanvas() {
   const canvas = $('#bg-canvas'); if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  let stars = [], beams = [], clouds = [], t = 0, onScreen = true, raf = 0, W = 0, H = 0;
-
+  let nodes = [], pulses = [], t = 0, onScreen = true, raf = 0, W = 0, H = 0, rt;
+  const LINK = 150;
   function build() {
     const dpr = Math.min(devicePixelRatio || 1, 2);
     W = canvas.offsetWidth; H = canvas.offsetHeight;
     canvas.width = W * dpr; canvas.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const n = W < 600 ? 55 : 120;
-    stars = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.4 + .2,
-      ph: Math.random() * 6.283, sp: Math.random() * .006 + .002, gold: Math.random() > .6 }));
-    beams = Array.from({ length: 5 }, (_, i) => ({ x: (i + .6) * (W / 5.5), w: Math.random() * 55 + 25,
-      a: Math.random() * .055 + .015, sp: Math.random() * .2 + .06, o: Math.random() * 6.283 }));
-    clouds = Array.from({ length: 3 }, (_, i) => ({ nx: .2 + i * .28, ny: .25 + i * .18, r: Math.max(W, H) * (.4 + i * .08), sp: .15 + i * .08, o: i * 1.4 }));
+    nodes = Array.from({ length: W < 600 ? 26 : 60 }, (_, i) => ({ x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25, r: Math.random() * 2 + 1.5, sq: i % 5 === 0 }));
+    pulses = [];
   }
-  let rt; build();
+  build();
   addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(build, 200); }, { passive: true });
-
   function draw() {
     raf = 0; if (!onScreen || document.hidden) return;
-    t += .007;
+    t++;
     const g = ctx.createLinearGradient(0, 0, 0, H);
-    g.addColorStop(0, '#050710'); g.addColorStop(.3, '#0b1020'); g.addColorStop(.7, '#080d1a'); g.addColorStop(1, '#050710');
+    g.addColorStop(0, '#f8fbff'); g.addColorStop(1, '#e4edf8');
     ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-    clouds.forEach(c => {
-      const x = W * c.nx + Math.sin(t * c.sp + c.o) * 35, y = H * c.ny + Math.cos(t * c.sp * .7 + c.o) * 20;
-      const rg = ctx.createRadialGradient(x, y, 0, x, y, c.r);
-      rg.addColorStop(0, 'rgba(200,180,120,0.055)'); rg.addColorStop(.4, 'rgba(168,196,232,0.03)'); rg.addColorStop(1, 'transparent');
-      ctx.fillStyle = rg; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = 'rgba(30,95,214,0.07)'; ctx.lineWidth = 1; ctx.beginPath();
+    for (let x = 0; x < W; x += 40) { ctx.moveTo(x, 0); ctx.lineTo(x, H); }
+    for (let y = 0; y < H; y += 40) { ctx.moveTo(0, y); ctx.lineTo(W, y); }
+    ctx.stroke();
+    nodes.forEach(n => {
+      if (!reduced) { n.x += n.vx; n.y += n.vy; }
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
     });
-    beams.forEach(b => {
-      const x = b.x + Math.sin(t * b.sp + b.o) * 30, bg = ctx.createLinearGradient(x, 0, x, H);
-      bg.addColorStop(0, `rgba(220,200,150,${b.a})`); bg.addColorStop(.3, `rgba(200,180,120,${b.a * .6})`); bg.addColorStop(1, 'transparent');
-      ctx.fillStyle = bg; ctx.beginPath(); ctx.moveTo(x - b.w, 0); ctx.lineTo(x + b.w, 0);
-      ctx.lineTo(x + b.w * .35, H); ctx.lineTo(x - b.w * .35, H); ctx.fill();
+    const links = [];
+    for (let i = 0; i < nodes.length; i++) for (let k = i + 1; k < nodes.length; k++) {
+      const d = Math.hypot(nodes[i].x - nodes[k].x, nodes[i].y - nodes[k].y);
+      if (d < LINK) {
+        links.push([nodes[i], nodes[k]]);
+        ctx.strokeStyle = `rgba(30,95,214,${.28 * (1 - d / LINK)})`;
+        ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[k].x, nodes[k].y); ctx.stroke();
+      }
+    }
+    nodes.forEach(n => {
+      ctx.fillStyle = n.sq ? 'rgba(242,106,27,0.8)' : 'rgba(30,95,214,0.55)';
+      if (n.sq) ctx.fillRect(n.x - 3, n.y - 3, 6, 6); else { ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, 6.283); ctx.fill(); }
     });
-    stars.forEach(s => {
-      const a = .2 + .8 * (.5 + .5 * Math.sin(t * s.sp * 10 + s.ph));
-      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 6.283);
-      ctx.fillStyle = s.gold ? `rgba(220,200,140,${a})` : `rgba(255,255,255,${a})`; ctx.fill();
-    });
-    if (!reduced) raf = requestAnimationFrame(draw);
+    if (!reduced) {
+      if (t % 35 === 0 && links.length && pulses.length < 10) pulses.push({ l: links[(Math.random() * links.length) | 0], p: 0 });
+      pulses = pulses.filter(s => (s.p += .025) < 1);
+      pulses.forEach(s => {
+        const [a, b] = s.l; ctx.fillStyle = '#f26a1b'; ctx.shadowColor = '#f26a1b'; ctx.shadowBlur = 8;
+        ctx.beginPath(); ctx.arc(a.x + (b.x - a.x) * s.p, a.y + (b.y - a.y) * s.p, 2.6, 0, 6.283); ctx.fill(); ctx.shadowBlur = 0;
+      });
+      raf = requestAnimationFrame(draw);
+    }
   }
   const kick = () => { if (!raf) raf = requestAnimationFrame(draw); };
   new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; if (onScreen) kick(); }).observe(canvas);
@@ -143,11 +152,11 @@ function initHeroCanvas() {
 
 function initHeroParticles() {
   const box = $('#hero-particles'); if (!box || reduced) return;
-  const cols = ['rgba(200,180,120,', 'rgba(232,212,160,', 'rgba(255,248,220,', 'rgba(168,196,232,'];
+  const cols = ['rgba(30,95,214,', 'rgba(14,165,164,', 'rgba(242,106,27,', 'rgba(74,141,240,'];
   for (let i = 0; i < (innerWidth < 600 ? 6 : 16); i++) {
     const p = document.createElement('div'), s = Math.random() * 55 + 8, c = cols[(Math.random() * 4) | 0];
     p.className = 'hero-particle';
-    p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;background:radial-gradient(circle,${c}0.45),transparent 70%);--dur:${Math.random() * 7 + 4}s;--delay:-${Math.random() * 7}s;filter:blur(${Math.random() * 12 + 4}px)`;
+    p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;background:radial-gradient(circle,${c}0.28),transparent 70%);--dur:${Math.random() * 7 + 4}s;--delay:-${Math.random() * 7}s;filter:blur(${Math.random() * 12 + 4}px)`;
     box.appendChild(p);
   }
 }
