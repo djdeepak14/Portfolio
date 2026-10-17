@@ -2,13 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="Deepak Khanal — Automation Engineer, AI Enthusiast, Full Stack Developer, IoT & Computer Vision Developer based in Finland." />
   <meta name="keywords" content="Deepak Khanal, Automation Engineer, Full Stack Developer, Computer Vision, IoT, React, Python, PLC, AI" />
   <meta property="og:title" content="Deepak Khanal | Portfolio" />
   <meta property="og:description" content="Automation Engineer | AI Enthusiast | Full Stack Developer | IoT & Computer Vision Developer" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://deepak-khanal.com.np" />
+  <meta property="og:url" content="https://www.deepak-khanal.com.np/" />
+  <meta name="theme-color" content="#06080f" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="canonical" href="https://www.deepak-khanal.com.np/" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%2306080f%22/><text x=%2250%22 y=%2268%22 font-size=%2256%22 font-weight=%22800%22 text-anchor=%22middle%22 fill=%22%23c8b47a%22 font-family=%22sans-serif%22>DK</text></svg>" />
+  <noscript><style>.reveal-up,.reveal-left,.reveal-right{opacity:1!important;transform:none!important}#loader{display:none!important}.skill-fill{width:var(--w,80%)!important}</style></noscript>
   <title>Deepak Khanal | Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,6 +21,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to content</a>
 
   <!-- ===== LOADING SCREEN ===== -->
   <div id="loader">
@@ -35,20 +41,25 @@
   <!-- ===== NAVBAR ===== -->
   <nav id="navbar">
     <div class="nav-logo">DK<span class="nav-dot">.</span></div>
-    <ul class="nav-links">
+    <ul class="nav-links" id="nav-links">
       <li><a href="#about" data-nav>About</a></li>
       <li><a href="#skills" data-nav>Skills</a></li>
       <li><a href="#experience" data-nav>Experience</a></li>
       <li><a href="#projects" data-nav>Projects</a></li>
       <li><a href="#research" data-nav>Research</a></li>
-      <li><a href="#certifications" data-nav>Certs</a></li>
+      <li><a href="#certifications" data-nav>Education</a></li>
       <li><a href="#contact" data-nav>Contact</a></li>
     </ul>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+    <div class="visitor-pill" id="visitor-pill" hidden title="Total visitors so far">
+      <span class="vp-dot"></span><span class="vp-icon" aria-hidden="true">👁</span>
+      <span><b id="visitor-count">0</b> <span class="vp-label">visitors</span></span>
+    </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
+  <main id="main">
   <!-- ===== HERO ===== -->
   <section id="hero">
     <canvas id="bg-canvas"></canvas>
@@ -104,8 +115,8 @@
         </div>
         <div class="about-stats reveal-right">
           <div class="stat-card glass-card">
-            <div class="stat-num" data-target="7">0</div>
-            <div class="stat-label">Years Experience</div>
+            <div class="stat-num" data-target="2">0</div>
+            <div class="stat-label">Years in Tech</div>
           </div>
           <div class="stat-card glass-card">
             <div class="stat-num" data-target="6">0</div>
@@ -142,19 +153,19 @@
         <div class="skill-card glass-card tilt-card reveal-up" data-cat="frontend">
           <div class="skill-icon">⚛️</div>
           <div class="skill-name">React</div>
-          <div class="skill-bar"><div class="skill-fill" data-pct="88"></div></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="88" style="--w:88%"></div></div>
           <div class="skill-pct">88%</div>
         </div>
         <div class="skill-card glass-card tilt-card reveal-up" data-cat="frontend">
           <div class="skill-icon">🟨</div>
           <div class="skill-name">JavaScript</div>
-          <div class="skill-bar"><div class="skill-fill" data-pct="85"></div></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="85" style="--w:85%"></div></div>
           <div class="skill-pct">85%</div>
         </div>
         <div class="skill-card glass-card tilt-card reveal-up" data-cat="frontend">
           <div class="skill-icon">🎨</div>
           <div class="skill-name">HTML / CSS</div>
-          <div class="skill-bar"><div class="skill-fill" data-pct="90"></div></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="90" style="--w:90%"></div></div>
           <div class="skill-pct">90%</div>
         </div>
 
@@ -162,37 +173,37 @@
         <div class="skill-card glass-card tilt-card reveal-up" data-cat="backend">
           <div class="skill-icon">🐍</div>
           <div class="skill-name">Python</div>
-          <div class="skill-bar"><div class="skill-fill" data-pct="82"></div></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="82" style="--w:82%"></div></div>
           <div class="skill-pct">82%</div>
         </div>
         <div class="skill-card glass-card tilt-card reveal-up" data-cat="backend">
           <div class="skill-icon">🟢</div>
           <div class="skill-name">Node.js</div>
-          <div class="skill-bar"><div class="skill-fill" data-pct="78"></div></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="78" style="--w:78%"></div></div>
           <div class="skill-pct">78%</div>
         </div>
         <div class="skill-card glass-card tilt-card reveal-up" data-cat="backend">
           <div class="skill-icon">🗄️</div>
           <div class="skill-name">SQL</div>
-          <div class="skill-bar"><div class="skill-fill" data-pct="75"></div></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="75" style="--w:75%"></div></div>
           <div class="skill-pct">75%</div>
         </div>
         <div class="skill-card glass-card tilt-card reveal-up" data-cat="backend">
           <div class="skill-icon">👁️</div>
           <div class="skill-name">OpenCV</div>
-          <div class="skill-bar"><div class="skill-fill" data-pct="80"></div></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="80" style="--w:80%"></div></div>
           <div class="skill-pct">80%</div>
         </div>
         <div class="skill-card glass-card tilt-card reveal-up" data-cat="backend">
           <div class="skill-icon">🎯</div>
           <div class="skill-name">YOLO / AI</div>
-          <div class="skill-bar"><div class="skill-fill" data-pct="78"></div></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="78" style="--w:78%"></div></div>
           <div class="skill-pct">78%</div>
         </div>
         <div class="skill-card glass-card tilt-card reveal-up" data-cat="backend">
           <div class="skill-icon">📊</div>
           <div class="skill-name">MATLAB</div>
-          <div class="skill-bar"><div class="skill-fill" data-pct="72"></div></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="72" style="--w:72%"></div></div>
           <div class="skill-pct">72%</div>
         </div>
 
@@ -200,31 +211,31 @@
         <div class="skill-card glass-card tilt-card reveal-up" data-cat="automation">
           <div class="skill-icon">⚙️</div>
           <div class="skill-name">PLC / TwinCAT</div>
-          <div class="skill-bar"><div class="skill-fill" data-pct="80"></div></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="80" style="--w:80%"></div></div>
           <div class="skill-pct">80%</div>
         </div>
         <div class="skill-card glass-card tilt-card reveal-up" data-cat="automation">
           <div class="skill-icon">🤖</div>
           <div class="skill-name">ABB RAPID</div>
-          <div class="skill-bar"><div class="skill-fill" data-pct="75"></div></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="75" style="--w:75%"></div></div>
           <div class="skill-pct">75%</div>
         </div>
         <div class="skill-card glass-card tilt-card reveal-up" data-cat="automation">
           <div class="skill-icon">⚡</div>
           <div class="skill-name">EPLAN</div>
-          <div class="skill-bar"><div class="skill-fill" data-pct="70"></div></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="70" style="--w:70%"></div></div>
           <div class="skill-pct">70%</div>
         </div>
         <div class="skill-card glass-card tilt-card reveal-up" data-cat="automation">
           <div class="skill-icon">🌐</div>
           <div class="skill-name">IoT Systems</div>
-          <div class="skill-bar"><div class="skill-fill" data-pct="82"></div></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="82" style="--w:82%"></div></div>
           <div class="skill-pct">82%</div>
         </div>
         <div class="skill-card glass-card tilt-card reveal-up" data-cat="automation">
           <div class="skill-icon">📐</div>
           <div class="skill-name">CAD / SolidWorks</div>
-          <div class="skill-bar"><div class="skill-fill" data-pct="65"></div></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="65" style="--w:65%"></div></div>
           <div class="skill-pct">65%</div>
         </div>
 
@@ -232,7 +243,7 @@
         <div class="skill-card glass-card tilt-card reveal-up" data-cat="hardware">
           <div class="skill-icon">🖥️</div>
           <div class="skill-name">IT Hardware</div>
-          <div class="skill-bar"><div class="skill-fill" data-pct="85"></div></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="85" style="--w:85%"></div></div>
           <div class="skill-pct">85%</div>
         </div>
 
@@ -388,7 +399,7 @@
           </div>
           <div class="project-actions">
             <button class="btn-sm btn-glow" onclick="openModal('laundry')">View Details</button>
-            <a href="https://github.com/djdeepak14" target="_blank" class="btn-sm btn-outline">GitHub ↗</a>
+            <a href="https://github.com/djdeepak14" target="_blank" rel="noopener" class="btn-sm btn-outline">GitHub ↗</a>
           </div>
         </div>
 
@@ -402,7 +413,7 @@
           </div>
           <div class="project-actions">
             <button class="btn-sm btn-glow" onclick="openModal('yolo')">View Details</button>
-            <a href="https://github.com/djdeepak14" target="_blank" class="btn-sm btn-outline">GitHub ↗</a>
+            <a href="https://github.com/djdeepak14" target="_blank" rel="noopener" class="btn-sm btn-outline">GitHub ↗</a>
           </div>
         </div>
 
@@ -416,7 +427,7 @@
           </div>
           <div class="project-actions">
             <button class="btn-sm btn-glow" onclick="openModal('traffic')">View Details</button>
-            <a href="https://github.com/djdeepak14" target="_blank" class="btn-sm btn-outline">GitHub ↗</a>
+            <a href="https://github.com/djdeepak14" target="_blank" rel="noopener" class="btn-sm btn-outline">GitHub ↗</a>
           </div>
         </div>
 
@@ -430,7 +441,7 @@
           </div>
           <div class="project-actions">
             <button class="btn-sm btn-glow" onclick="openModal('face')">View Details</button>
-            <a href="https://github.com/djdeepak14" target="_blank" class="btn-sm btn-outline">GitHub ↗</a>
+            <a href="https://github.com/djdeepak14" target="_blank" rel="noopener" class="btn-sm btn-outline">GitHub ↗</a>
           </div>
         </div>
 
@@ -444,7 +455,7 @@
           </div>
           <div class="project-actions">
             <button class="btn-sm btn-glow" onclick="openModal('iot')">View Details</button>
-            <a href="https://github.com/djdeepak14" target="_blank" class="btn-sm btn-outline">GitHub ↗</a>
+            <a href="https://github.com/djdeepak14" target="_blank" rel="noopener" class="btn-sm btn-outline">GitHub ↗</a>
           </div>
         </div>
 
@@ -458,7 +469,7 @@
           </div>
           <div class="project-actions">
             <button class="btn-sm btn-glow" onclick="openModal('plc')">View Details</button>
-            <a href="https://github.com/djdeepak14" target="_blank" class="btn-sm btn-outline">GitHub ↗</a>
+            <a href="https://github.com/djdeepak14" target="_blank" rel="noopener" class="btn-sm btn-outline">GitHub ↗</a>
           </div>
         </div>
 
@@ -498,7 +509,7 @@
         <div class="research-tags">
           <span>Python</span><span>YOLOv8</span><span>OpenCV</span><span>Computer Vision</span><span>IoT</span><span>Multithreading</span>
         </div>
-        <a href="https://github.com/djdeepak14" target="_blank" class="btn btn-primary" style="margin-top:1.5rem">View on GitHub ↗</a>
+        <a href="https://github.com/djdeepak14" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:1.5rem">View on GitHub ↗</a>
       </div>
     </div>
   </section>
@@ -507,7 +518,7 @@
   <section id="certifications" class="section section-dark">
     <div class="container">
       <div class="section-label reveal-up">— Credentials</div>
-      <h2 class="section-title reveal-up">Certifications & <span class="gradient-text">Education</span></h2>
+      <h2 class="section-title reveal-up">Education & <span class="gradient-text">Training</span></h2>
       <div class="certs-grid">
         <div class="cert-card glass-card reveal-up">
           <div class="cert-icon">🎓</div>
@@ -566,49 +577,52 @@
               <span class="cl-icon">📞</span>
               <div><div class="cl-label">Phone</div><div class="cl-val">+358 415 705 989</div></div>
             </a>
-            <a href="https://github.com/djdeepak14" target="_blank" class="contact-link glass-card">
+            <a href="https://github.com/djdeepak14" target="_blank" rel="noopener" class="contact-link glass-card">
               <span class="cl-icon">🐙</span>
               <div><div class="cl-label">GitHub</div><div class="cl-val">github.com/djdeepak14</div></div>
             </a>
-            <a href="https://linkedin.com/in/deepak-khanal-419266252" target="_blank" class="contact-link glass-card">
+            <a href="https://linkedin.com/in/deepak-khanal-419266252" target="_blank" rel="noopener" class="contact-link glass-card">
               <span class="cl-icon">💼</span>
               <div><div class="cl-label">LinkedIn</div><div class="cl-val">deepak-khanal</div></div>
             </a>
-            <a href="https://deepak-khanal.com.np" target="_blank" class="contact-link glass-card">
+            <a href="https://deepak-khanal.com.np" target="_blank" rel="noopener" class="contact-link glass-card">
               <span class="cl-icon">🌐</span>
               <div><div class="cl-label">Portfolio</div><div class="cl-val">deepak-khanal.com.np</div></div>
             </a>
           </div>
         </div>
         <div class="contact-form-wrap reveal-right">
-          <form class="contact-form glass-card" id="contact-form" onsubmit="handleFormSubmit(event)">
+          <form class="contact-form glass-card" id="contact-form" autocomplete="on">
+            <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
             <div class="form-group">
-              <input type="text" id="f-name" placeholder=" " required />
+              <input type="text" id="f-name" name="name" placeholder=" " required />
               <label for="f-name">Your Name</label>
               <div class="form-underline"></div>
             </div>
             <div class="form-group">
-              <input type="email" id="f-email" placeholder=" " required />
+              <input type="email" id="f-email" name="email" placeholder=" " required />
               <label for="f-email">Your Email</label>
               <div class="form-underline"></div>
             </div>
             <div class="form-group">
-              <input type="text" id="f-subject" placeholder=" " />
+              <input type="text" id="f-subject" name="subject" placeholder=" " />
               <label for="f-subject">Subject</label>
               <div class="form-underline"></div>
             </div>
             <div class="form-group">
-              <textarea id="f-msg" rows="5" placeholder=" " required></textarea>
+              <textarea id="f-msg" name="message" rows="5" placeholder=" " required></textarea>
               <label for="f-msg">Your Message</label>
               <div class="form-underline"></div>
             </div>
             <button type="submit" class="btn btn-primary magnetic" id="submit-btn">Send Message ✈️</button>
-            <div class="form-success" id="form-success">✅ Message sent! I'll be in touch soon.</div>
+            <div class="form-success" id="form-success" role="status" aria-live="polite">✅ Message sent! I'll be in touch soon.</div>
           </form>
         </div>
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- ===== FOOTER ===== -->
   <footer id="footer">
@@ -622,11 +636,11 @@
       <div class="footer-logo">DK<span>.</span></div>
       <p class="footer-tagline">Automation · AI · Full Stack · IoT</p>
       <div class="footer-socials">
-        <a href="https://github.com/djdeepak14" target="_blank" aria-label="GitHub">GH</a>
-        <a href="https://linkedin.com/in/deepak-khanal-419266252" target="_blank" aria-label="LinkedIn">LI</a>
+        <a href="https://github.com/djdeepak14" target="_blank" rel="noopener" aria-label="GitHub">GH</a>
+        <a href="https://linkedin.com/in/deepak-khanal-419266252" target="_blank" rel="noopener" aria-label="LinkedIn">LI</a>
         <a href="mailto:djdeepakdj14@gmail.com" aria-label="Email">✉</a>
       </div>
-      <p class="footer-copy">© 2025 Deepak Khanal. Made with ♥ in Finland.</p>
+      <p class="footer-copy">© <span id="year">2026</span> Deepak Khanal. Made with ♥ in Finland.</p>
     </div>
   </footer>
 
@@ -635,8 +649,8 @@
 
   <!-- ===== PROJECT MODALS ===== -->
   <div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
-    <div class="modal-box glass-card" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-box glass-card" role="dialog" aria-modal="true" aria-labelledby="modal-title" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close dialog">✕</button>
       <div class="modal-content" id="modal-content"></div>
     </div>
   </div>
